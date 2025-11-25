@@ -10,24 +10,24 @@ const Login = async(req , res) =>{
   try{
     const user = await USER.findOne({email});
     if(!user){
-        res.json({message:"User is not found"});
+       return res.status(409).json({message:"User is not found"});
     }
     const validUser = bcrypt.compare(password , user.password);
     if(!validUser){
-        res.json({message:"Please Enter correct password"});
+        res.status(409).json({message:"Please Enter correct password"});
        }
        const payload = {
         email:user.email 
        }
      const token = Jwt.sign(payload , SecretKey , {expiresIn : "1h"} );
     //  console.log("token: ",token);
-     res.json({message:"User loggedIn Successfully", token:token});
+     res.status(200).json({message:"User loggedIn Successfully", token:token});
 
     
     }
   
   catch(err){
-    res.json({message:"Internal Server Error" , error:err.message});
+    res.status(500).json({message:"Internal Server Error" , error:err.message});
   }
 }
 

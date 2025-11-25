@@ -6,16 +6,16 @@ const Register = async(req ,  res)=>{
     try{
      const userExist = await  USER.findOne({email});
      if(userExist){
-        res.json({message:"User is already exists"});
+        res.status(404).json({message:"User is already exists"});
      }
      const salt = 7 ;
      const hashPassword = await bcrypt.hash(password , salt);
-     console.log(hashPassword);
+    //  console.log(hashPassword);
      await USER.create({email:email , name:name , password:hashPassword});
-     res.json({message:"user is created successfully"});
+     res.status(201).json({message:"user is created successfully"});
 
     }catch(err){
-        res.json({message:"Internal Server Error" , error:err.message})
+        res.status(500).json({message:"Internal Server Error" , error:err.message})
     }
 } 
 
