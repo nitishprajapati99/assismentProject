@@ -5,11 +5,11 @@ dotenv.config();
 
 app.use(express.json());
 
-const userRoute = require('./src/Routes/user');
+const userRoute = require('./Routes/user');
 app.use('/api' , userRoute );
 //start function
 const PORT = process.env.PORT || 5000;
-const ConnectDB = require('./src/DB/config');
+const ConnectDB = require('./DB/config');
 const DB = process.env.mongoURI ;
 const start = ()=>{
 app.listen(PORT , ()=>{
