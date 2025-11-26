@@ -10,7 +10,7 @@ const emailValidation = body("email")
 //password validaions
 const passwordValidation  = body("password")
 .notEmpty().withMessage("Password is required")
-.matches(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/)
+// .matches(/^(?=.*[A-Za-z])[A-Za-z\d]{6,}$/)
 .withMessage("Password must be at least 6 characters long and contain at least one letter and one number");
 
 //module exporting

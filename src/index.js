@@ -4,9 +4,12 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 app.use(express.json());
-
+//user signup and login route
 const userRoute = require('./Routes/user');
 app.use('/api' , userRoute );
+//Profile getter Route
+const profile = require('./Routes/profile');
+app.use('/api',profile);
 //start function
 const PORT = process.env.PORT || 5000;
 const ConnectDB = require('./DB/config');
