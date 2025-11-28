@@ -15,7 +15,8 @@ const Login = async(req , res , next) =>{
         message:"user is not found"
       })
     }
-    const validUser = bcrypt.compare(password , user.password);
+    const validUser = await bcrypt.compare(password , user.password);
+    // console.log(validUser);
     if(!validUser){
         return next({
           status:409,

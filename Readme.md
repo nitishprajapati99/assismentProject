@@ -1,8 +1,11 @@
-✅ README TEMPLATE (Copy → Edit → Paste in your repo)
-📝 Project Name
 
+📝 user signup and login system
+
+//descriptioj
 A simple backend authentication system built using Node.js, Express, MongoDB, and JWT.
 It includes user registration, login, validation, password hashing, and a protected profile route.
+
+
 
 🚀 Tech Stack
 
@@ -16,25 +19,28 @@ JWT Authentication
 
 bcrypt password hashing
 
+
+
 📦 Installation
-git clone <your_repo_link>
-cd <project_folder>
+git clone < https://github.com/nitishprajapati99/assismentProject.git >
+cd <day1Task>
 npm install
 
-▶️ Run the Project
-Development mode:
-npm run dev
 
-Production mode:
-npm start
+📂 Project Structure
+project/
+  src/
+    index.js
+    Controllers/
+    Models/
+    Routes/
+    Middlewares/
+    DB/
+  .env
+  .gitignore
+  package.json
 
-🔧 Environment Variables
 
-Create a .env file in the root folder:
-
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
 
 📌 API Endpoints
 1. Register User
@@ -91,18 +97,27 @@ Error Response (missing/invalid token):
   "error": "Access denied"
 }
 
-📂 Project Structure
-project/
-  src/
-    index.js
-    Controllers/
-    Models/
-    Routes/
-    Middlewares/
-    DB/
-  .env
-  .gitignore
-  package.json
+
+▶️ Run the Project
+Development mode:
+npm run dev
+
+Production mode:
+npm start
+
+
+
+
+🔧 Environment Variables
+
+Create a .env file in the root folder:
+
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+
+
+
 
 📎 Author
 
