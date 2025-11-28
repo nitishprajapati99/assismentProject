@@ -10,6 +10,11 @@ app.use('/api' , userRoute );
 //Profile getter Route
 const profile = require('./Routes/profile');
 app.use('/api',profile);
+
+//Error Handler
+const errorHandler = require('./Middlewares/errorHandler');
+app.use(errorHandler);
+
 //start function
 const PORT = process.env.PORT || 5000;
 const ConnectDB = require('./DB/config');

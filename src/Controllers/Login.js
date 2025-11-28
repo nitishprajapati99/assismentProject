@@ -4,17 +4,23 @@ const Jwt = require('jsonwebtoken');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const Login = async(req , res) =>{
+const Login = async(req , res , next) =>{
     const SecretKey = process.env.SECRET_KEY ; 
   const {email , password} = req.body ;
-  try{
+  
     const user = await USER.findOne({email});
     if(!user){
-       return res.status(409).json({message:"User is not found"});
+      return next({
+        status:404,
+        message:"user is not found"
+      })
     }
     const validUser = bcrypt.compare(password , user.password);
     if(!validUser){
-        res.status(409).json({message:"Please Enter correct password"});
+        return next({
+          status:409,
+          message:"Invalid credentials "
+        })
        }
        const payload = {
         email:user.email 
@@ -24,11 +30,9 @@ const Login = async(req , res) =>{
      res.status(200).json({message:"User loggedIn Successfully", token:token});
 
     
-    }
+   
+    
   
-  catch(err){
-    res.status(500).json({message:"Internal Server Error" , error:err.message});
-  }
 }
 
 //moduling exporting

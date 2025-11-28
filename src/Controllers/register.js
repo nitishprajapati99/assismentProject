@@ -1,12 +1,15 @@
 const USER = require('../models/userSchema');
 const bcrypt = require('bcrypt');
 
-const Register = async(req ,  res)=>{
+const Register = async(req ,  res , next)=>{
     const {name , email , password} = req.body ;
-    try{
+    
      const userExist = await  USER.findOne({email});
      if(userExist){
-        res.status(404).json({message:"User is already exists"});
+        return next({
+        status:404,
+        message:"user is already registered"
+        });
      }
      const salt = 7 ;
      const hashPassword = await bcrypt.hash(password , salt);
@@ -14,9 +17,7 @@ const Register = async(req ,  res)=>{
      await USER.create({email:email , name:name , password:hashPassword});
      res.status(201).json({message:"user is created successfully"});
 
-    }catch(err){
-        res.status(500).json({message:"Internal Server Error" , error:err.message})
-    }
+    
 } 
 
 //module exporting 
